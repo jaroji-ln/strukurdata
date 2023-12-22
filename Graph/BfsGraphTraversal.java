@@ -2,18 +2,18 @@ package Graph;
 
 import java.util.*;
 
-class Edge {
+class Edges {
     String destination;
     int weight;
 
-    public Edge(String destination, int weight) {
+    public Edges(String destination, int weight) {
         this.destination = destination;
         this.weight = weight;
     }
 }
 
 public class BfsGraphTraversal {
-    private Map<String, List<Edge>> adjacencyList;
+    private Map<String, List<Edges>> adjacencyList;
 
     public BfsGraphTraversal() {
         adjacencyList = new HashMap<>();
@@ -30,11 +30,11 @@ public class BfsGraphTraversal {
         adjacencyList.putIfAbsent(source, new ArrayList<>());
 
         // Tambahkan edge berbobot
-        adjacencyList.get(source).add(new Edge(destination, weight));
+        adjacencyList.get(source).add(new Edges(destination, weight));
     }
 
     // Mendapatkan daftar tetangga dan bobot dari node
-    public List<Edge> getNeighbors(String node) {
+    public List<Edges> getNeighbors(String node) {
         return adjacencyList.getOrDefault(node, Collections.emptyList());
     }
 
@@ -51,7 +51,7 @@ public class BfsGraphTraversal {
             System.out.print(current + " ");
 
             // Menambahkan semua tetangga yang belum dikunjungi ke antrian
-            for (Edge edge : adjacencyList.getOrDefault(current, Collections.emptyList())) {
+            for (Edges edge : adjacencyList.getOrDefault(current, Collections.emptyList())) {
                 if (!visited.contains(edge.destination)) {
                     queue.add(edge.destination);
                     visited.add(edge.destination);

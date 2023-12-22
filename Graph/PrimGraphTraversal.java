@@ -40,7 +40,7 @@ public class PrimGraphTraversal {
 
         // Tambahkan edge berbobot
         adjacencyList.get(source).add(new Edge(source, destination, weight));
-        //adjacencyList.get(destination).add(new Edge(destination, source, weight)); // Untuk graf tidak terarah
+        adjacencyList.get(destination).add(new Edge(destination, source, weight)); // Untuk graf tidak terarah
     }
 
     // Mendapatkan daftar tetangga dan bobot dari node
@@ -62,12 +62,14 @@ public class PrimGraphTraversal {
             edgeTo.put(edge.destination, edge);
         }
 
+        int totalWeight = 0; // Variabel untuk menyimpan total bobot
         while (!pq.isEmpty()) {
             Edge edge = pq.poll();
             if (inMST.contains(edge.destination)) continue;
 
             inMST.add(edge.destination);
             System.out.println(edgeTo.get(edge.destination).source + " - " + edge.destination + " [" + edge.weight + "]");
+            totalWeight += edge.weight; // Menambahkan bobot edge ke total bobot
 
             for (Edge nextEdge : adjacencyList.getOrDefault(edge.destination, Collections.emptyList())) {
                 if (!inMST.contains(nextEdge.destination)) {
@@ -76,20 +78,30 @@ public class PrimGraphTraversal {
                 }
             }
         }
+
+        System.out.println("Total bobot MST: " + totalWeight); // Mencetak total bobot
     }
 
     public static void main(String[] args) {
         PrimGraphTraversal graph = new PrimGraphTraversal();
+
+        // Menambahkan node ke graph
         graph.addNode("A");
         graph.addNode("B");
         graph.addNode("C");
         graph.addNode("D");
+        graph.addNode("E");
 
-        graph.addEdge("A", "B", 5);
-        graph.addEdge("A", "C", 3);
-        graph.addEdge("B", "C", 2);
-        graph.addEdge("C", "D", 4);
-
+        // menambahkan edge atau sisi ke graph
+        graph.addEdge("A", "B", 6);
+        graph.addEdge("A", "D", 4);
+        graph.addEdge("B", "C", 7);
+        graph.addEdge("B", "E", 10);
+        graph.addEdge("C", "D", 8);
+        graph.addEdge("C", "E", 5);
+        graph.addEdge("D", "E", 3);
+        
+        // menjalankan algoritma prim dengan node random A
         graph.primMST("A");
     }
 
