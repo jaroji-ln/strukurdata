@@ -93,7 +93,6 @@ public class PrimGraphTraversal {
         graph.addNode("E");
 
         // menambahkan edge atau sisi ke graph
-        /* 
         graph.addEdge("A", "B", 6);
         graph.addEdge("A", "D", 4);
         graph.addEdge("B", "C", 7);
@@ -101,17 +100,6 @@ public class PrimGraphTraversal {
         graph.addEdge("C", "D", 8);
         graph.addEdge("C", "E", 5);
         graph.addEdge("D", "E", 3);
-        */
-
-        graph.addEdge("A", "B", 6);
-        graph.addEdge("A", "D", 4);
-        graph.addEdge("B", "C", 7);
-        graph.addEdge("C", "E", 5);
-        graph.addEdge("D", "E", 3);
-        graph.addEdge("D", "B", 12);
-        graph.addEdge("A", "E", 8);
-        graph.addEdge("B", "E", 10);
-
         
         // menjalankan algoritma prim dengan node random A
         graph.primMST("A");
